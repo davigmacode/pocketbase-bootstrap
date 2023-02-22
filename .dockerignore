@@ -1,0 +1,14 @@
+README.md
+.gitignore
+.git
+
+# Binaries for programs and plugins
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+
+# Pocketbase data
+pb_data/
+data/

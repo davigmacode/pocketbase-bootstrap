@@ -1,0 +1,23 @@
+version: '3'
+
+services:
+  pb:
+    container_name: pb
+    restart: unless-stopped
+    build: .
+    image: pb:latest
+    volumes:
+      - pb-data:/pb_data
+    networks:
+      - pb-net
+    ports:
+      - '9191:8080'
+
+volumes:
+  pb-data:
+    name: pb-data
+
+networks:
+  pb-net:
+    name: pb-net
+    driver: bridge
