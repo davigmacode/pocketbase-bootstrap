@@ -1,23 +1,25 @@
 version: '3'
 
 services:
-  pb:
-    container_name: pb
-    restart: unless-stopped
+  pbstrap:
+    container_name: pbstrap
     build: .
-    image: pb:latest
+    image: pbstrap:latest
+    restart: unless-stopped
+    env_file: .env
     volumes:
-      - pb-data:/pb_data
+      - pbstrap-data:/pb_data #using a volume
+      #- ./data:/pb_data/ # if you want to use a bind folder
     networks:
-      - pb-net
+      - pbstrap-net
     ports:
-      - '9191:8080'
+      - '${HTTP_PORT:-8080}:8080'
 
 volumes:
-  pb-data:
-    name: pb-data
+  pbstrap-data:
+    name: pbstrap-data
 
 networks:
-  pb-net:
-    name: pb-net
+  pbstrap-net:
+    name: pbstrap-net
     driver: bridge
